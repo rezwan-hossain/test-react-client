@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {ObjectId} = mongoose.Schema;
 
 const postSchema = mongoose.Schema({
     title: {
@@ -22,8 +23,8 @@ const postSchema = mongoose.Schema({
     },
     user: {
         type: String,
-        defult:'Admin' 
+        default: 'Admin' 
     }
 });
 
-module.exports = mongoose.model('Post', postSchema);    
+module.exports = mongoose.model('Post', postSchema); 
