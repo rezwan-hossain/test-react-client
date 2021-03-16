@@ -10,7 +10,7 @@ function App() {
 
   const fetchPosts = () => {
     axios
-      .get(`${process.env.REACT_APP_API}/users`)
+      .get(`${process.env.REACT_APP_API}/`)
       .then((response) => {
         setPosts(response.data);
       })
@@ -18,7 +18,7 @@ function App() {
         console.log("some error");
       });
   };
-
+  console.log(posts);
   useEffect(() => {
     fetchPosts();
   }, []);

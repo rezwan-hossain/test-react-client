@@ -3,11 +3,12 @@ const router = express.Router();
 
 const {create, list, read, update, remove} = require('../controllers/post');
 
-router.post('/post', create);
-router.get('/posts', list);
-router.get('/posts/:slug', read)
-router.put('/posts/:slug', update)
-router.delete('/posts/:slug', remove)
+
+router.get('/', list)
+      .post('/', create);
+router.get('/:slug', read)
+router.put('/:slug', update)
+router.delete('/:slug', remove)
 
 
 
