@@ -10,7 +10,7 @@ function App() {
 
   const fetchPosts = () => {
     axios
-      .get(`${process.env.REACT_APP_API}/`)
+      .get(`${process.env.REACT_APP_API}/users`)
       .then((response) => {
         setPosts(response.data);
       })
