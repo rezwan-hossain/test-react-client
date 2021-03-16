@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./tailwind.output.css";
+import Button from "@material-ui/core/Button";
 
 import Nav from "./nav";
 import axios from "axios";
@@ -65,12 +66,14 @@ function App() {
                 </Link>
               </div>
               <div className="">
-                <button
+                <Button
+                  variant="contained"
+                  color="primary"
                   className="bg-transparent hover:bg-red text-red-dark font-semibold hover:text-white px-4 border border-red hover:border-transparent rounded-full mr-2 "
                   onClick={() => deletePost(post.slug)}
                 >
-                  delete
-                </button>
+                  Delete
+                </Button>
               </div>
             </div>
           </div>
