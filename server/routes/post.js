@@ -6,6 +6,6 @@ const { create, list, read, update, remove } = require("../controllers/post");
 router.get("/users", list).post("/users", create);
 router.get("/users/:slug", read);
 router.put("/users/:slug", update);
-router.delete("/:slug", remove);
+router.delete("/users/:slug", remove);
 
 module.exports = router;
