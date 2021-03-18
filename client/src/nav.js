@@ -4,23 +4,6 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
-    // <nav>
-    //   <ul>
-    //     <li>
-    //       <Link to="/">Home</Link>
-    //     </li>
-    //     <li>
-    //       <Link to="create">Create</Link>
-    //     </li>
-    //     <li>
-    //       <Link to="signup">Sign up</Link>
-    //     </li>
-    //     <li>
-    //       <Link to="login">Sign in</Link>
-    //     </li>
-    //   </ul>
-    // </nav>
-
     <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-indigo-500 mb-3">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">

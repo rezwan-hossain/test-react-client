@@ -40,35 +40,36 @@ function Create() {
         </div>
 
         <div className="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
-          <input
-            className="mb-4 focus:outline-none bg-gray-100 border border-gray-300 p-2 mb-4 outline-none"
-            onChange={handleChange("title")}
-            value={title}
-            type="text"
-            className="from-controle"
-            placeholder="title"
-            required
-          />
-
-          <textarea
-            className="description bg-gray-100 sec p-3 h-40 border border-gray-300 outline-none"
-            onChange={handleChange("content")}
-            value={content}
-            type="text"
-            className="from-controle"
-            placeholder="content"
-            required
-          />
-
-          <input
-            className="title bg-gray-100 border border-gray-300 p-2 mt-4  mb-4 outline-none"
-            onChange={handleChange("user")}
-            value={user}
-            type="text"
-            className="from-controle"
-            placeholder="user name"
-            required
-          />
+          <div className="form-group from-controle title bg-gray-100 border border-gray-300 p-2 mt-4  mb-4 outline-none">
+            <input
+              className=" from-controle border border-gray-300 outline-none"
+              onChange={handleChange("title")}
+              value={title}
+              type="text"
+              placeholder="title name"
+              required
+            />
+          </div>
+          <div className="form-group from-controle title bg-gray-100 border border-gray-300 p-2 mt-4  mb-4 outline-none">
+            <textarea
+              className="from-controle description bg-gray-100 sec p-3 h-40 border border-gray-300 outline-none"
+              onChange={handleChange("content")}
+              value={content}
+              type="text"
+              placeholder="content"
+              required
+            />
+          </div>
+          <div className="form-group from-controle title bg-gray-100 border border-gray-300 p-2 mt-4  mb-4 outline-none">
+            <input
+              className="from-controle title bg-gray-100 border border-gray-300 p-2 mt-4  mb-4 outline-none"
+              onChange={handleChange("user")}
+              value={user}
+              type="text"
+              placeholder="user name"
+              required
+            />
+          </div>
           <div class="buttons flex">
             <div class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">
               Cancel

@@ -51,8 +51,11 @@ const UpdatePost = (props) => {
 
   const showUpdateForm = () => (
     <form onSubmit={handleSubmit}>
-      <h1> from</h1>
-      <div className="form-group">
+      <div className="heading text-center font-bold text-2xl m-5 text-gray-800">
+        Update Post
+      </div>
+
+      <div className="form-group editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
         <label>title</label>
         <input
           onChange={handleChange("title")}
@@ -63,7 +66,7 @@ const UpdatePost = (props) => {
           required
         />
       </div>
-      <div className="form-group">
+      <div className="form-group editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
         <label>content</label>
         <textarea
           onChange={handleChange("content")}
@@ -74,7 +77,7 @@ const UpdatePost = (props) => {
           required
         />
       </div>
-      <div className="form-group">
+      <div className="form-group editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl">
         <label>user</label>
         <input
           onChange={handleChange("user")}

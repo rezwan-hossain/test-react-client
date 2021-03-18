@@ -1,16 +1,21 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
+
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
+
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -19,10 +24,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
+
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
@@ -32,8 +34,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const SignupSchema = yup.object().shape({
+  name: yup.string().required(),
+  email: yup.string().email().required(),
+  password: yup.string().required(),
+});
+
 export default function SignUp() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const { register, handleSubmit, errors } = useForm({
+    validationSchema: SignupSchema,
+  });
+
+  const onSubmit = (data) => {
+    axios
+      .post(`${process.env.REACT_APP_API}/register`, {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      })
+      .then((response) => {
+        alert("succenfull");
+        console.log(response);
+        history.push("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -42,19 +72,22 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="Name"
+                type="text"
+                name="name"
+                autoComplete="name"
                 variant="outlined"
-                required
                 fullWidth
-                id="Name"
+                required
+                id="name"
                 label="Name"
                 autoFocus
+                inputRef={register}
               />
+              {errors.name && <p>{errors.name.message}</p>}
             </Grid>
 
             <Grid item xs={12}>
@@ -66,6 +99,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                inputRef={register}
               />
             </Grid>
             <Grid item xs={12}>
@@ -78,6 +112,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                inputRef={register}
               />
             </Grid>
           </Grid>

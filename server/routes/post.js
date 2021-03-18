@@ -1,7 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 
-const { create, list, read, update, remove } = require("../controllers/post");
+const {
+  create,
+  list,
+  read,
+  update,
+  remove,
+  register,
+  login,
+} = require("../controllers/post");
+
+router.post("/register", register);
+router.post("/login", login);
 
 router.get("/users", list).post("/users", create);
 router.get("/users/:slug", read);
