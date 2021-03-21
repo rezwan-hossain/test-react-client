@@ -74,11 +74,8 @@ function Create() {
             <div class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">
               Cancel
             </div>
-            <div
-              type="submit"
-              class="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500"
-            >
-              Submit
+            <div>
+              <button type="submit">submit</button>
             </div>
           </div>
         </div>

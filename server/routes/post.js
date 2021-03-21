@@ -20,4 +20,28 @@ router.get("/users/:slug", read);
 router.put("/users/:slug", update);
 router.delete("/users/:slug", remove);
 
+
+//creating a middlewere for jwt verify token 
+const verifyToken = ((req, res,next){
+  token = req.headers['x-access-token'];
+
+  if(!token){
+    return res.status(401).send({
+      auth: false,
+      message: 'no token provides'      
+    })
+  }
+
+  jwt.verify(token, 'secret', (err, data)=>{
+    if(err){
+      return res.status(500).send({
+
+        auth: false,
+        message: 'Failed to authenticate token'
+      })
+    }
+    req.userId =data.id
+  })
+});
+
 module.exports = router;
