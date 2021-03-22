@@ -16,32 +16,30 @@ router.post("/register", register);
 router.post("/login", login);
 
 router.get("/users", list).post("/users", create);
-router.get("/users/:slug", read);
+router.get("/users/:slug", verifyToken, read);
 router.put("/users/:slug", update);
 router.delete("/users/:slug", remove);
 
+//creating a middlewere for jwt verify token
+function verifyToken(req, res, next) {
+  var token = req.headers["x-access-token"];
 
-//creating a middlewere for jwt verify token 
-const verifyToken = ((req, res,next){
-  token = req.headers['x-access-token'];
-
-  if(!token){
-    return res.status(401).send({
+  if (!token) {
+    return res.status(400).send({
       auth: false,
-      message: 'no token provides'      
-    })
+      message: "no token provided",
+    });
   }
-
-  jwt.verify(token, 'secret', (err, data)=>{
-    if(err){
+  jwt.verify(token, "secret", (err, data) => {
+    if (err) {
       return res.status(500).send({
-
         auth: false,
-        message: 'Failed to authenticate token'
-      })
+        message: "Failed to authenticate token",
+      });
     }
-    req.userId =data.id
-  })
-});
+    req.userId = data.id;
+    next();
+  });
+}
 
 module.exports = router;

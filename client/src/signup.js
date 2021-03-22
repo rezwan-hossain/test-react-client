@@ -57,6 +57,12 @@ export default function SignUp() {
       })
       .then((response) => {
         alert("succenfull");
+
+        //id name email
+        //redux save
+
+        // save on local sotrage
+
         console.log(response);
         history.push("/login");
       })

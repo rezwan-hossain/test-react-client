@@ -2,14 +2,21 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+
+import { setAccessToken } from "./utils/index";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,8 +38,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const SigninSchema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required(),
+});
+
 export default function SignIn() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const { register, handleSubmit } = useForm({
+    validationSchema: SigninSchema,
+  });
+
+  const onSubmit = (data) => {
+    axios
+      .post(`${process.env.REACT_APP_API}/login`, {
+        email: data.email,
+        password: data.password,
+      })
+      .then((response) => {
+        alert("succenfull");
+        //set on the local storage
+        setAccessToken(response);
+        console.log(response);
+        history.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -41,21 +76,19 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <TextField
             variant="outlined"
-            margin="normal"
             required
             fullWidth
             id="email"
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
+            inputRef={register}
           />
           <TextField
             variant="outlined"
-            margin="normal"
             required
             fullWidth
             name="password"
@@ -63,11 +96,9 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            inputRef={register}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+
           <Button
             type="submit"
             fullWidth

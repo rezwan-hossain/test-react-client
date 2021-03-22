@@ -1,18 +1,33 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import App from "./App";
 import Create from "./create";
 import SinglePost from "./singlePost";
 import UpdatePost from "./updatePost";
 import SignUp from "./signup";
 import SignIn from "./login";
+import { isAuthenticate } from "./utils/index";
+
+export const PrivateRoute = ({ children, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isAuthenticate() ? children : <Redirect to="/signin" />
+      }
+    />
+  );
+};
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={App} />
-        <Route path="/create" exact component={Create} />
+        {/* <Route path="/create" exact component={Create} /> */}
+        <PrivateRoute exact={true} path="/login">
+          <Create />
+        </PrivateRoute>
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={SignIn} />
         <Route path="/post/:slug" exact component={SinglePost} />
