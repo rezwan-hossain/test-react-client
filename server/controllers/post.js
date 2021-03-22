@@ -91,8 +91,10 @@ exports.register = (req, res) => {
       // create json web token
       const token = jwt.sign({ id: user._id }, "secret", { expiresIn: 86400 });
       res.status(200).send({
-        auth: true,
         token: token,
+        id: user._id,
+        name: user.name,
+        email: user.email,
       });
     }
   );
@@ -114,15 +116,16 @@ exports.login = (req, res) => {
     );
     if (!passwordIsValid) {
       return res.status(401).send({
-        auth: false,
         token: null,
       });
     }
 
     const token = jwt.sign({ id: user._id }, "secret", { expiresIn: 86400 });
     res.status(200).send({
-      auth: true,
       token: token,
+      id: user._id,
+      name: user.name,
+      email: user.email,
     });
   });
 };

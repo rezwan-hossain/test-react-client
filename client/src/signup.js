@@ -59,12 +59,22 @@ export default function SignUp() {
         alert("succenfull");
 
         //id name email
+
         //redux save
 
         // save on local sotrage
+        window.localStorage.setItem(
+          "user",
+          JSON.stringify({
+            id: response.data.id,
+            name: response.data.name,
+            email: response.data.email,
+            token: response.data.token,
+          })
+        );
 
-        console.log(response);
-        history.push("/login");
+        console.log(response.data);
+        //history.push("/login");
       })
       .catch((error) => {
         console.log(error);

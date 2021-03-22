@@ -13,7 +13,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        isAuthenticate() ? children : <Redirect to="/signin" />
+        isAuthenticate() ? children : <Redirect to="/login" />
       }
     />
   );
@@ -25,11 +25,11 @@ const Routes = () => {
       <Switch>
         <Route path="/" exact component={App} />
         {/* <Route path="/create" exact component={Create} /> */}
-        <PrivateRoute exact={true} path="/login">
+        <PrivateRoute exact={true} path="/create">
           <Create />
         </PrivateRoute>
-        <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={SignIn} />
+        <Route path="/signup" exact component={SignUp} />
         <Route path="/post/:slug" exact component={SinglePost} />
         <Route path="/update/:slug" exact component={UpdatePost} />
       </Switch>
