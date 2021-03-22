@@ -5,11 +5,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 
 import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
 
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -82,15 +79,15 @@ export default function SignUp() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <div component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <div component="h1" variant="h5">
           Sign up
-        </Typography>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
+          <div spacing={2}>
+            <div item xs={12}>
               <TextField
                 type="text"
                 name="name"
@@ -104,9 +101,9 @@ export default function SignUp() {
                 inputRef={register}
               />
               {errors.name && <p>{errors.name.message}</p>}
-            </Grid>
+            </div>
 
-            <Grid item xs={12}>
+            <div item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -117,8 +114,8 @@ export default function SignUp() {
                 autoComplete="email"
                 inputRef={register}
               />
-            </Grid>
-            <Grid item xs={12}>
+            </div>
+            <div item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -130,8 +127,8 @@ export default function SignUp() {
                 autoComplete="current-password"
                 inputRef={register}
               />
-            </Grid>
-          </Grid>
+            </div>
+          </div>
           <Button
             type="submit"
             fullWidth
@@ -141,15 +138,13 @@ export default function SignUp() {
           >
             Sign Up
           </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
+          <div className="flex-end">
+            <Link href="/login" variant="body2">
+              Already have an account? Sign in
+            </Link>
+          </div>
         </form>
       </div>
-    </Container>
+    </div>
   );
 }

@@ -18,7 +18,7 @@ const Nav = () => {
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <a
             className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white"
-            href="#pablo"
+            href="!#"
           >
             <Link to="/">Home</Link>
           </a>
@@ -43,7 +43,7 @@ const Nav = () => {
                 <li className="nav-item">
                   <a
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    href="#pablo"
+                    href="!#"
                   >
                     <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
                     <Link to="/create">Create</Link>
@@ -52,7 +52,7 @@ const Nav = () => {
                 <li className="">
                   <a
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    href="#pablo"
+                    href="!#"
                   >
                     <button onClick={handledLogout}>log out</button>
                   </a>
@@ -63,7 +63,7 @@ const Nav = () => {
                 <li className="">
                   <a
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    href="#pablo"
+                    href="!#"
                   >
                     <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
                     <Link to="/signup">Sign up</Link>
@@ -72,7 +72,7 @@ const Nav = () => {
                 <li className="nav-item">
                   <a
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    href="#pablo"
+                    href="!#"
                   >
                     <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
                     <Link to="/login">Sign in</Link>
