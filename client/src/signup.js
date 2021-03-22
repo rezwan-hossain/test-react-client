@@ -74,7 +74,7 @@ export default function SignUp() {
         );
 
         console.log(response.data);
-        //history.push("/login");
+        history.push("/login");
       })
       .catch((error) => {
         console.log(error);

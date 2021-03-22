@@ -60,15 +60,6 @@ export default function SignIn() {
       .then((response) => {
         alert("succenfull");
         //set on the local storage
-        window.localStorage.setItem(
-          "user",
-          JSON.stringify({
-            id: response.data.id,
-            name: response.data.name,
-            email: response.data.email,
-            token: response.data.token,
-          })
-        );
 
         console.log(response);
         setAccessToken(response.data.token);

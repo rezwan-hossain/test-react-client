@@ -23,15 +23,30 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={App} />
-        {/* <Route path="/create" exact component={Create} /> */}
+        <PrivateRoute exact={true} path="/">
+          <App />
+        </PrivateRoute>
+
         <PrivateRoute exact={true} path="/create">
           <Create />
         </PrivateRoute>
-        <Route path="/login" exact component={SignIn} />
-        <Route path="/signup" exact component={SignUp} />
-        <Route path="/post/:slug" exact component={SinglePost} />
-        <Route path="/update/:slug" exact component={UpdatePost} />
+
+        <Route
+          path="/login"
+          exact
+          render={() => (isAuthenticate() ? <Redirect to="/" /> : <SignIn />)}
+        />
+        <Route
+          path="/signup"
+          exact
+          render={() => (isAuthenticate() ? <Redirect to="/" /> : <SignUp />)}
+        />
+        <PrivateRoute exact={true} path="/post/:slug">
+          <SinglePost />
+        </PrivateRoute>
+        <PrivateRoute exact={true} path="/update/:slug">
+          <UpdatePost />
+        </PrivateRoute>
       </Switch>
     </BrowserRouter>
   );
