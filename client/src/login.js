@@ -55,7 +55,7 @@ export default function SignIn() {
         password: data.password,
       })
       .then((response) => {
-        alert("succenfull");
+        alert("successful");
         //set on the local storage
 
         console.log(response);
