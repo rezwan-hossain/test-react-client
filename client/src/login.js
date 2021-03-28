@@ -14,6 +14,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 import { setAccessToken } from "./utils/index";
+import { useDispatch } from "react-redux";
+import { saveInfo } from "./features/loginInfoSlice";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,6 +45,7 @@ const SigninSchema = yup.object().shape({
 export default function SignIn() {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm({
     validationSchema: SigninSchema,
@@ -56,8 +59,14 @@ export default function SignIn() {
       })
       .then((response) => {
         alert("successful");
+        //save user name email and token in redux store
+        dispatch(
+          saveInfo({
+            email: data.email,
+            "access-token": response.data.token,
+          })
+        );
         //set on the local storage
-
         console.log(response);
         setAccessToken(response.data.token);
         history.push("/");
