@@ -8,6 +8,7 @@ const Nav = () => {
   const history = useHistory();
 
   const handledLogout = (e) => {
+    window.localStorage.removeItem("id");
     removeAccessToken();
     history.push("/login");
   };

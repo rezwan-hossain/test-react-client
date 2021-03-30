@@ -5,6 +5,8 @@ import Button from "@material-ui/core/Button";
 
 import Nav from "./nav";
 import axios from "axios";
+import { isAuthenticate } from "./utils/index";
+// import store from "./app/store";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -22,6 +24,25 @@ function App() {
   console.log(posts);
   useEffect(() => {
     fetchPosts();
+  }, []);
+
+  //get user info
+  useEffect(() => {
+    const uid = window.localStorage.getItem("id");
+
+    if (isAuthenticate()) {
+      // console.log(store.getState());
+      // console.log("jwt is working");
+      axios
+        .get(`${process.env.REACT_APP_API}/users/${uid}`)
+        .then((response) => {
+          const data = response.data;
+          console.log(` hello world${data}`);
+        })
+        .catch((error) => alert("Error loading single post"));
+    } else {
+      console.log("error");
+    }
   }, []);
 
   const deletePost = (slug) => {

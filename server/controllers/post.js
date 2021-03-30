@@ -129,3 +129,23 @@ exports.login = (req, res) => {
     });
   });
 };
+
+exports.userInfo = (req, res) => {
+  const { id } = req.params;
+
+  User.find({ _id: id }).exec((err, user) => {
+    console.log(`hellow world ${user}`);
+    if (err) {
+      return res.status(500).send("The was a problem finding the user");
+    }
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    res.status(200).send({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  });
+};

@@ -58,16 +58,18 @@ export default function SignIn() {
         password: data.password,
       })
       .then((response) => {
-        alert("successful");
+        alert("sucessfull");
         //save user name email and token in redux store
         dispatch(
           saveInfo({
-            email: data.email,
-            "access-token": response.data.token,
+            id: response.data.id,
+            name: response.data.name,
+            email: response.data.email,
           })
         );
         //set on the local storage
         console.log(response);
+        window.localStorage.setItem("id", response.data.id);
         setAccessToken(response.data.token);
         history.push("/");
       })

@@ -10,15 +10,17 @@ const {
   remove,
   register,
   login,
+  userInfo,
 } = require("../controllers/post");
 
 router.post("/register", register);
 router.post("/login", login);
 
 router.get("/users", list).post("/users", create);
-router.get("/users/:slug", verifyToken, read);
 router.put("/users/:slug", update);
 router.delete("/users/:slug", remove);
+router.get("/users/:id", userInfo);
+router.get("/users/:slug", verifyToken, read);
 
 //creating a middlewere for jwt verify token
 function verifyToken(req, res, next) {
