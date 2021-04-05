@@ -87,7 +87,7 @@ export default function SignUp() {
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div spacing={2}>
-            <div item xs={12}>
+            <div>
               <TextField
                 type="text"
                 name="name"
@@ -103,7 +103,7 @@ export default function SignUp() {
               {errors.name && <p>{errors.name.message}</p>}
             </div>
 
-            <div item xs={12}>
+            <div>
               <TextField
                 variant="outlined"
                 required
@@ -115,7 +115,7 @@ export default function SignUp() {
                 inputRef={register}
               />
             </div>
-            <div item xs={12}>
+            <div>
               <TextField
                 variant="outlined"
                 required
