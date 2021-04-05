@@ -70,8 +70,8 @@ function Create() {
               required
             />
           </div>
-          <div class="buttons flex">
-            <div class="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">
+          <div className="buttons flex">
+            <div className="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto">
               Cancel
             </div>
             <div>
