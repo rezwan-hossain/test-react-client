@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 
 import Nav from "./nav";
 import axios from "axios";
+import { useQuery } from "react-query";
 import { isAuthenticate } from "./utils/index";
 // import store from "./app/store";
 
@@ -56,6 +57,13 @@ function App() {
         alert("delete post problem deleting");
       });
   };
+
+  const { isLoading, error, data } = useQuery("postData", () =>
+    axios.get(`${process.env.REACT_APP_API}/users`)
+  );
+  console.log(data);
+  if (isLoading) return <h1>Loading......</h1>;
+  if (error) return <h1>Error {error.message}, try again</h1>;
 
   return (
     <div className="App">
