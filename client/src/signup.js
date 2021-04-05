@@ -79,7 +79,7 @@ export default function SignUp() {
   };
 
   return (
-    <div component="main" maxWidth="xs">
+    <div component="main">
       <CssBaseline />
       <div className={classes.paper}>
         <div component="h1" variant="h5">

@@ -17,12 +17,12 @@ const Nav = () => {
     <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-indigo-500 mb-3">
       <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-          <a
+          <Link
             className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-white"
-            href="!#"
+            to="/"
           >
-            <Link to="/">Home</Link>
-          </a>
+            Home
+          </Link>
           <button
             className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
             type="button"
@@ -42,21 +42,26 @@ const Nav = () => {
             {isAuthenticate() ? (
               <div>
                 <li className="nav-item">
-                  <a
+                  <Link
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    href="!#"
+                    to="/create"
                   >
-                    <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
-                    <Link to="/create">Create</Link>
-                  </a>
+                    Create
+                  </Link>
                 </li>
                 <li className="">
-                  <a
+                  {/* <a
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    href="!#"
+                    href="#"
                   >
                     <button onClick={handledLogout}>log out</button>
-                  </a>
+                  </a> */}
+                  <button
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    onClick={handledLogout}
+                  >
+                    log out
+                  </button>
                 </li>
               </div>
             ) : (
@@ -64,7 +69,7 @@ const Nav = () => {
                 <li className="">
                   <a
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    href="!#"
+                    href="#"
                   >
                     <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
                     <Link to="/signup">Sign up</Link>
@@ -73,7 +78,7 @@ const Nav = () => {
                 <li className="nav-item">
                   <a
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    href="!#"
+                    href="#"
                   >
                     <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
                     <Link to="/login">Sign in</Link>

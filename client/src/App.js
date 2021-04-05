@@ -29,7 +29,7 @@ function App() {
   //get user info
   useEffect(() => {
     const uid = window.localStorage.getItem("id");
-
+    console.log(`userid ${uid}`);
     if (isAuthenticate()) {
       // console.log(store.getState());
       // console.log("jwt is working");

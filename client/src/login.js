@@ -79,7 +79,7 @@ export default function SignIn() {
   };
 
   return (
-    <div component="main" maxWidth="xs">
+    <div component="main">
       <CssBaseline />
       <div className={classes.paper}>
         <h1>Sign in</h1>
@@ -116,8 +116,8 @@ export default function SignIn() {
             Sign In
           </Button>
           <div>
-            <div item xs></div>
-            <div item>
+            <div></div>
+            <div>
               <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
