@@ -10,22 +10,22 @@ import { isAuthenticate } from "./utils/index";
 // import store from "./app/store";
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
 
-  const fetchPosts = () => {
-    axios
-      .get(`${process.env.REACT_APP_API}/users`)
-      .then((response) => {
-        setPosts(response.data);
-      })
-      .catch((error) => {
-        console.log("some error");
-      });
-  };
-  console.log(posts);
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  // const fetchPosts = () => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API}/users`)
+  //     .then((response) => {
+  //       setPosts(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log("some error");
+  //     });
+  // };
+  // console.log(posts);
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, []);
 
   //get user info
   useEffect(() => {
@@ -51,7 +51,7 @@ function App() {
       .delete(`${process.env.REACT_APP_API}/users/${slug}`)
       .then((response) => {
         alert(response.data.message);
-        fetchPosts();
+        // fetchPosts();
       })
       .catch((error) => {
         alert("delete post problem deleting");
@@ -59,7 +59,10 @@ function App() {
   };
 
   const { isLoading, error, data } = useQuery("postData", () =>
-    axios.get(`${process.env.REACT_APP_API}/users`)
+    axios.get(`${process.env.REACT_APP_API}/users`).then((response) => {
+      // console.log(response.data);
+      return response.data;
+    })
   );
   console.log(data);
   if (isLoading) return <h1>Loading......</h1>;
@@ -71,7 +74,7 @@ function App() {
 
       <br />
 
-      {posts.map((post, i) => (
+      {data.map((post, i) => (
         <div key={post._id}>
           <div className="  max-w-md mx-auto flex flex-col p-6 bg-gray-100 mt-4 rounded-lg shadow-xl">
             <div className="block ml-6 pt-1">
