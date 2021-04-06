@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 
 import Nav from "./nav";
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useQuery, useMutation, QueryCache } from "react-query";
 import { isAuthenticate } from "./utils/index";
 // import store from "./app/store";
 
@@ -46,24 +46,39 @@ function App() {
     }
   }, []);
 
-  const deletePost = (slug) => {
+  // const deletePost = (slug) => {
+  //   axios
+  //     .delete(`${process.env.REACT_APP_API}/users/${slug}`)
+  //     .then((response) => {
+  //       alert(response.data.message);
+  //       // fetchPosts();
+  //       refetch();
+  //     })
+  //     .catch((error) => {
+  //       alert("delete post problem deleting");
+  //     });
+  // };
+
+  const deletePostData = (slug) => {
     axios
       .delete(`${process.env.REACT_APP_API}/users/${slug}`)
       .then((response) => {
         alert(response.data.message);
         // fetchPosts();
-      })
-      .catch((error) => {
-        alert("delete post problem deleting");
       });
   };
 
-  const { isLoading, error, data } = useQuery("postData", () =>
+  const fetchPostData = () =>
     axios.get(`${process.env.REACT_APP_API}/users`).then((response) => {
       // console.log(response.data);
       return response.data;
-    })
+    });
+
+  const { isLoading, error, data, refetch } = useQuery(
+    "postData",
+    fetchPostData
   );
+  const mutation = useMutation(deletePostData);
   console.log(data);
   if (isLoading) return <h1>Loading......</h1>;
   if (error) return <h1>Error {error.message}, try again</h1>;
@@ -102,7 +117,8 @@ function App() {
                   variant="contained"
                   color="primary"
                   className="bg-transparent hover:bg-red text-red-dark font-semibold hover:text-white px-4 border border-red hover:border-transparent rounded-full mr-2 "
-                  onClick={() => deletePost(post.slug)}
+                  // onClick={() => deletePost(post.slug)}
+                  onClick={() => mutation.mutate(post.slug)}
                 >
                   Delete
                 </Button>
