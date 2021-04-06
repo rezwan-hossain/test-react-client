@@ -67,22 +67,24 @@ const Nav = () => {
             ) : (
               <div>
                 <li className="">
-                  <a
+                  {/* <a
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                     href="#"
                   >
                     <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
                     <Link to="/signup">Sign up</Link>
-                  </a>
+                  </a> */}
+                  <Link to="/signup">Sign up</Link>
                 </li>
                 <li className="nav-item">
-                  <a
+                  {/* <a
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    href="#"
+                    href="!#"
                   >
                     <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
                     <Link to="/login">Sign in</Link>
-                  </a>
+                  </a> */}
+                  <Link to="/login">Sign in</Link>
                 </li>
               </div>
             )}

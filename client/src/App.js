@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./tailwind.output.css";
 import Button from "@material-ui/core/Button";
 
 import Nav from "./nav";
 import axios from "axios";
-import { useQuery, useMutation, QueryCache } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import { isAuthenticate } from "./utils/index";
 // import store from "./app/store";
 
@@ -74,10 +74,7 @@ function App() {
       return response.data;
     });
 
-  const { isLoading, error, data, refetch } = useQuery(
-    "postData",
-    fetchPostData
-  );
+  const { isLoading, error, data } = useQuery("postData", fetchPostData);
   const mutation = useMutation(deletePostData);
   console.log(data);
   if (isLoading) return <h1>Loading......</h1>;
