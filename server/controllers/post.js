@@ -37,7 +37,7 @@ exports.list = (req, res) => {
 
 exports.read = (req, res) => {
   const { slug } = req.params;
-
+  console.log(slug);
   Post.findOne({ slug }).exec((err, post) => {
     if (err) {
       console.log(err);

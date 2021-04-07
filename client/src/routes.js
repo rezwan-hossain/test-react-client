@@ -41,9 +41,10 @@ const Routes = () => {
           exact
           render={() => (isAuthenticate() ? <Redirect to="/" /> : <SignUp />)}
         />
-        <PrivateRoute exact={true} path="/post/:slug">
+        <Route path="/post/:slug" exact component={SinglePost} />
+        {/* <PrivateRoute exact={true} path="/post/:slug">
           <SinglePost />
-        </PrivateRoute>
+        </PrivateRoute> */}
         <PrivateRoute exact={true} path="/update/:slug">
           <UpdatePost />
         </PrivateRoute>

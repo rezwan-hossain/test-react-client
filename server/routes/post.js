@@ -20,7 +20,7 @@ router.get("/users", list).post("/users", create);
 router.put("/users/:slug", update);
 router.delete("/users/:slug", remove);
 router.get("/users/:id", userInfo);
-router.get("/users/:slug", verifyToken, read);
+router.get("/users/post/:slug", read);
 
 //creating a middlewere for jwt verify token
 function verifyToken(req, res, next) {

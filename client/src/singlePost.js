@@ -6,8 +6,9 @@ const SinglePost = (props) => {
   const [post, setPost] = useState("");
 
   useEffect(() => {
+    console.log(props.match.params.slug);
     axios
-      .get(`${process.env.REACT_APP_API}/users/${props.match.params.slug}`)
+      .get(`${process.env.REACT_APP_API}/users/post/${props.match.params.slug}`)
       .then((response) => setPost(response.data))
       .catch((error) => alert("Error loading single post"));
   }, [props.match.params.slug]);
